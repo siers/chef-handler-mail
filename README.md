@@ -27,6 +27,18 @@ Using chef_handler LWRP
        action :nothing
     end.run_action(:enable)
 
+Installing the gem from github
+
+    # Berksfile
+    cookbook 'gem_specific_install'
+
+    # recipes/name.rb
+    include_recipe 'gem_specific_install'
+    gem_specific_install 'chef-handler-mail' do
+      repository 'https://github.com/siers/chef-handler-mail/'
+    end
+    require 'chef/handler/mail'
+
 # LICENSE AND AUTHOR:
 
 Author:: Mathieu Sauve-Frankel (<msf@kisoku.net>)
