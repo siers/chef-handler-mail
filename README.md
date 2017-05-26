@@ -23,7 +23,7 @@ Using chef_handler LWRP
 
     chef_handler 'MailHandler' do
        source 'chef/handler/mail'
-       arguments :to_address => "root"
+       arguments :to_address => "root", :only_failures => true
        action :nothing
     end.run_action(:enable)
 

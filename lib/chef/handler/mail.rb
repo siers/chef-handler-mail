@@ -29,6 +29,8 @@ class MailHandler < Chef::Handler
   end
 
   def report
+    return if success? and options[:only_failures]
+
     status = success? ? "Successful" : "Failed"
     subject = "#{status} Chef run on node #{node.fqdn}"
 
