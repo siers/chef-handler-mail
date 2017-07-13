@@ -32,7 +32,7 @@ class MailHandler < Chef::Handler
     return if success? and options[:only_failures]
 
     status = success? ? "Successful" : "Failed"
-    subject = "#{status} Chef run on node #{node.fqdn}"
+    subject = "#{status} Chef run on node #{node['fqdn']}"
 
     Chef::Log.debug("mail handler template path: #{options[:template_path]}")
     if File.exists? options[:template_path]
@@ -51,7 +51,7 @@ class MailHandler < Chef::Handler
 
     Pony.mail(
       :to => options[:to_address],
-      :from => "chef-client@#{node.fqdn}",
+      :from => "chef-client@#{node['fqdn']}",
       :subject => subject,
       :body => body
     )
